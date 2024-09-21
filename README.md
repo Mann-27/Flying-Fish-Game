@@ -29,5 +29,9 @@ This game is developed using **JavaScript**, **HTML5 Canvas**, and **CSS**. It's
 - **CSS**: Basic styling for the canvas and game interface.
 
 ---
+## 🚀 How to Play
 
+
+Visit link:
+https://mann-27.github.io/Flying-Fish-Game/
 
