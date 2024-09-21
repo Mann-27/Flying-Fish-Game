@@ -29,6 +29,7 @@ This game is developed using **JavaScript**, **HTML5 Canvas**, and **CSS**. It's
 - **CSS**: Basic styling for the canvas and game interface.
 
 ---
+## Inspired,credit: From Open Source Project by Frank's Laboratory uk
 ## 🚀 How to Play
 
 
