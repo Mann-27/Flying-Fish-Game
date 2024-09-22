@@ -191,7 +191,7 @@ class Game{
             this.ctx.fillText("Press  'ctrl + R'   to  reload and       try again!",this.width * 0.5 , this.height * 0.5 - 0);
         }
         if(this.player.energy <= this.player.minEnergy)this.ctx.fillStyle='red';
-        else if(this.player.energy >= this.player.maxEnergy)this.ctx.fillStyle='orange';
+         else if(this.player.energy >= this.player.minEnergy && this.player.energy <= this.player.maxEnergy)this.ctx.fillStyle='orange';
         for(let i = 0; i< this.player.energy ; i++){
             this.ctx.fillRect(10,this.height - 10 - this.player.barSize * i  ,this.player.barSize * 5, this.player.barSize);
         }
