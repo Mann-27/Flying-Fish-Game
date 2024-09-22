@@ -18,7 +18,6 @@ This game is developed using **JavaScript**, **HTML5 Canvas**, and **CSS**. It's
 - **Obstacles**: Randomly spawned obstacles that increase difficulty.
 - **Score System**: Earn points by avoiding collisions and staying in the air.
 - **Game Over**: The game ends if the fish collides with an obstacle.
-- **Background Music**: Play background music that starts with the game and stops when the game is over.
 - **Responsive**: PLay on any device.
 ---
 
