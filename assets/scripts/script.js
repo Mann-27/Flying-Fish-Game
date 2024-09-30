@@ -1,13 +1,18 @@
+//import UserTracker from "./userCount";
+
 class Game{
-    constructor(canvas,context){
+    constructor(canvas,context,userCount){
         this.canvas=canvas;
         this.ctx=context;
+        this.ctxButton=context;
         this.width=this.canvas.width;
         this.height=this.canvas.height;
         this.baseHeight=720;
         this.ratio=this.height/this.baseHeight;
         this.background=new Background(this);//created instance of Background class and this represents the game class
         this.player=new Player(this);// here this is with the context of entire game object . 
+       
+        this.userCount=userCount;
         this.sound=new AudioControl();
         this.obstacles=[];//empty obstacles array to hold currently active practical objects
         this.numberOfObstacles = 15;
@@ -18,17 +23,25 @@ class Game{
         this.score;
         this.gameOver;
         this.timer;
+        this.isRunning=true;
         this.message1;
         this.message2;
         this.eventTimer = 0;
         this.eventInterval = 150;
         this.touchStartX;
         this.swipeDistance = 50;
-        this.debug=false;
+        //this.debug=false;
+        this.buttonHeight=40;
+        this.buttonWidth=120;
+        this.buttonX=300;
+        this.buttonY=600;
+        
        // this.onSound='On';
         this.bottomMargin;
-
-       
+        
+        // Menu flags
+        this.showMenu = true; // Initially show the menu
+        this.showGameOverMenu = false; // Initially hide the game over menu
         
         this.resize(window.innerWidth,window.innerHeight)
         window.addEventListener('resize', e => {
@@ -37,6 +50,7 @@ class Game{
 
         //mouse controls
         this.canvas.addEventListener('mousedown', e => {
+            
            this.player.flap();
            
         });
@@ -60,7 +74,6 @@ class Game{
         //touch controls
         this.canvas.addEventListener('touchstart', e => {
            this.player.flap();
-           
            this.touchStartX = e.changedTouches[0].pageX;
           
         })
@@ -126,8 +139,12 @@ class Game{
             obstacle.update();
             obstacle.draw();
          })
-
+       
+        
     }
+   
+
+  
 
     createObstacles(){
         this.obstacles = [];
@@ -161,9 +178,12 @@ class Game{
         }
     }
     triggerGameOver(){
+       this.player.stopCharge();
+      
        
         if(!this.gameOver){
             this.gameOver=true;
+            //this.userCount.drawVisitCount();
             if(this.obstacles.length <= 0){
                 this.sound.play(this.sound.victory);
                 this.message1 = `Nailed it champ!!! 🏆`;
@@ -173,8 +193,15 @@ class Game{
                 this.sound.play(this.sound.defeat);
                 this.message1 = "OOPS,Lost ☹️";
                  this.message2= "Collision time "  + this.formatTimer() + ' seconds!';
+                 
             }
+            //this.userCount.drawVisitCount(this.ctx);
+            //drawButton();
+            //this.isRunning=false;
+           // stopAnimation();
+
         }
+        
     }
     drawStatusText(){
         this.ctx.save();
@@ -185,45 +212,57 @@ class Game{
           
             this.ctx.textAlign = 'center';
             this.ctx.font='30px Ubuntu ';
-            this.ctx.fillText(this.message1,this.width * 0.5 , this.height * 0.5 - 40);
+            this.ctx.fillText(this.message1,this.width * 0.5 , this.height * 0.5 - 80);
             this.ctx.font='20px Ubuntu ';
-            this.ctx.fillText(this.message2,this.width * 0.5 , this.height * 0.5 - 20);
-            this.ctx.fillText("Press  'ctrl + R'   to  reload and       try again!",this.width * 0.5 , this.height * 0.5 - 0);
+            this.ctx.fillText(this.message2,this.width * 0.5 , this.height * 0.5 - 60);
+            this.ctx.fillText("Press  'ctrl + R'   to  reload and       try again!",this.width * 0.5 , this.height * 0.5 - 40);
+            this.userCount.drawVisitCount(this.ctx);
         }
         if(this.player.energy <= this.player.minEnergy)this.ctx.fillStyle='red';
-         else if(this.player.energy >= this.player.minEnergy && this.player.energy <= this.player.maxEnergy)this.ctx.fillStyle='orange';
+        else if(this.player.energy >= this.player.minEnergy && this.player.energy <= this.player.maxEnergy)this.ctx.fillStyle='orange';
         for(let i = 0; i< this.player.energy ; i++){
             this.ctx.fillRect(10,this.height - 10 - this.player.barSize * i  ,this.player.barSize * 5, this.player.barSize);
         }
         this.ctx.restore();
     }
+
 }
+
 
 //load event is fired when the whole page is loaded including all dependent resources such as stylesheets,scripts,iframes and images as well.
 window.addEventListener('load',function(){
+
+
+
         const canvas =document.getElementById('canvas1');
         const ctx=canvas.getContext('2d');
         canvas.width=720;
         canvas.height=720;
+       
+         // Create an instance of UserTracker and call handleUserCount
+    const userCount = new UserTracker();
+    userCount.handleUserCount(); // Increment and store user count in local storage
 
-        /*
-        getContent() :method creates so called drawing context which basically is a javascript interface that contains all drawing methods and properties that we all need.
+
+       /* getContent() :method creates so called drawing context which basically is a javascript interface that contains all drawing methods and properties that we all need.
         it expects atleast 1 argument.
         
         */
    //created an object of Game class
-   const game=new Game(canvas,ctx);
-  
-    //we have animated the player
+   const game=new Game(canvas,ctx,userCount);
     let lastTime = 0;
+    
 function animate(timeStamp){
     const deltaTime = timeStamp - lastTime;
     lastTime=timeStamp;
     ctx.clearRect(0,0,canvas.width,canvas.height);
     game.render(deltaTime);
- 
+
     requestAnimationFrame(animate);
+  
+    
 }
+
 requestAnimationFrame(animate);
  
 });
