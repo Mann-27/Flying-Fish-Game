@@ -6,7 +6,7 @@ class UserTracker {
         this.uniqueUserCount = this.getUniqueUserCount();
         this.totalVisitCount = this.getTotalVisitCount();
     
-        this.startTime=Date.now();
+       // this.startTime=Date.now();
     }
 
     generateSimpleID() {
