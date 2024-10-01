@@ -5,7 +5,7 @@ class UserTracker {
        // this.width=this.canvas.width;
         this.uniqueUserCount = this.getUniqueUserCount();
         this.totalVisitCount = this.getTotalVisitCount();
-    
+        this.scores=JSON.parse(localStorage.getItem(`scores_${this.userId}`))||[];
        // this.startTime=Date.now();
     }
 
@@ -49,7 +49,11 @@ class UserTracker {
     //     let timePlayed=Math.floor(endTime-this.startTime)/1000
     //     return timePlayed;
     // }
-
+   addScore(score)
+   {
+    this.scores.push(score);
+    localStorage.setItem(`scores_${this.userID}`,JSON.stringify(this.scores));
+   }
     incrementUniqueUserCount() {
         let uniqueUserCount = Number(localStorage.getItem('uniqueUserCount')) || 0;
         uniqueUserCount += 1;
@@ -75,7 +79,7 @@ class UserTracker {
         ctx.fillText('Player: ' + this.userName,300,300);
         ctx.fillText('Total Visits: ' + this.totalVisitCount,300,320);
         ctx.fillText('Unique Users: ' + this.uniqueUserCount, 300, 340);
-        //ctx.fillText('Time Played:'+this.getTimePlayed()+'seconds',200,450);
+        ctx.fillText(`Latest Score:${this.scores[this.scores.length - 1] || 'N/A'}`,300,360);
     }
 
     handleUserCount() {
