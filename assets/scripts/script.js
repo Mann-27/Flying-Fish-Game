@@ -205,7 +205,7 @@ class Game{
     }
     drawStatusText(){
         this.ctx.save();
-        this.ctx.fillText('Score: ' + this.score, this.width -10  , 30);
+        this.ctx.fillText('Score: ' + this.score, this.width  , 30);
         this.ctx.textAlign = 'left';
         this.ctx.fillText('Timer: ' + this.formatTimer(), 10 , 30);
         if(this.gameOver){
