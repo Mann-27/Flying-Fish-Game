@@ -19,6 +19,7 @@ This game is developed using **JavaScript**, **HTML5 Canvas**, and **CSS**. It's
 - **Score System**: Earn points by avoiding collisions and staying in the air.
 - **Game Over**: The game ends if the fish collides with an obstacle.
 - **Responsive**: PLay on any device.
+- **UserCount**:Total Visits and Unique Users are Displayed when Game is Over.
 ---
 
 ## 🛠️ Technologies Used
@@ -29,9 +30,14 @@ This game is developed using **JavaScript**, **HTML5 Canvas**, and **CSS**. It's
 
 ---
 ## Inspired,credit: From Open Source Project by Frank's Laboratory uk
-## 🚀 How to Play
+## 🚀 How to Play:
+Press click to flap, arrow up,down keys to flap.
+Press shift/c key to speed up .
+Avoid all obstacles ,to score more.
 
 
-Visit link:
+ 
+
+##Visit link to play :
 https://mann-27.github.io/Flying-Fish-Game/
 
