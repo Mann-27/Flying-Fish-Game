@@ -196,7 +196,7 @@ class Game{
                  this.message2= "Collision time "  + this.formatTimer() + ' seconds!';
                  
             }
-            
+            alert(`Thank you for playing, ${this.userCount.userName}!`); // Farewell message
             //this.userCount.drawVisitCount(this.ctx);
             //drawButton();
             //this.isRunning=false;
@@ -217,7 +217,9 @@ class Game{
             this.ctx.fillText(this.message1,this.width * 0.5 , this.height * 0.5 - 80);
             this.ctx.font='20px Ubuntu ';
             this.ctx.fillText(this.message2,this.width * 0.5 , this.height * 0.5 - 60);
-            this.ctx.fillText("Press  'ctrl + R'   to  reload and       try again!",this.width * 0.5 , this.height * 0.5 - 40);
+           
+            this.ctx.fillText("Press  'ctrl + R'   to  reload and  try again!",this.width * 0.5 , this.height * 0.5 - 40);
+            this.ctx.fillText("Close Browser to end the game.",this.width * 0.5 , this.height * 0.5 - 20);
 
             this.userCount.drawVisitCount(this.ctx);
         }
