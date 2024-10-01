@@ -5,8 +5,9 @@ class UserTracker {
        // this.width=this.canvas.width;
         this.uniqueUserCount = this.getUniqueUserCount();
         this.totalVisitCount = this.getTotalVisitCount();
+    
+        this.startTime=Date.now();
         this.scores=JSON.parse(localStorage.getItem(`scores_${this.userId}`))||[];
-       // this.startTime=Date.now();
     }
 
     generateSimpleID() {
@@ -24,7 +25,11 @@ class UserTracker {
         }
         return userID;
     }
-
+   addScore(score)
+   {
+    this.scores.push(score);
+    localStorage.setItem(`scores_${this.userID}`,JSON.stringify(this.scores));
+   }
     getUserName() {
         let userName = localStorage.getItem('userName');
         if (!userName) {
@@ -49,11 +54,7 @@ class UserTracker {
     //     let timePlayed=Math.floor(endTime-this.startTime)/1000
     //     return timePlayed;
     // }
-   addScore(score)
-   {
-    this.scores.push(score);
-    localStorage.setItem(`scores_${this.userID}`,JSON.stringify(this.scores));
-   }
+
     incrementUniqueUserCount() {
         let uniqueUserCount = Number(localStorage.getItem('uniqueUserCount')) || 0;
         uniqueUserCount += 1;

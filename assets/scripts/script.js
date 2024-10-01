@@ -184,6 +184,7 @@ class Game{
         if(!this.gameOver){
             this.gameOver=true;
             this.userCount.addScore(this.score);
+            //this.userCount.drawVisitCount();
             if(this.obstacles.length <= 0){
                 this.sound.play(this.sound.victory);
                 this.message1 = `Nailed it champ!!! 🏆`;
@@ -195,6 +196,7 @@ class Game{
                  this.message2= "Collision time "  + this.formatTimer() + ' seconds!';
                  
             }
+            
             //this.userCount.drawVisitCount(this.ctx);
             //drawButton();
             //this.isRunning=false;
@@ -216,6 +218,7 @@ class Game{
             this.ctx.font='20px Ubuntu ';
             this.ctx.fillText(this.message2,this.width * 0.5 , this.height * 0.5 - 60);
             this.ctx.fillText("Press  'ctrl + R'   to  reload and       try again!",this.width * 0.5 , this.height * 0.5 - 40);
+
             this.userCount.drawVisitCount(this.ctx);
         }
         if(this.player.energy <= this.player.minEnergy)this.ctx.fillStyle='red';
