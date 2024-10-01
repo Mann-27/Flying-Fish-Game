@@ -183,7 +183,7 @@ class Game{
        
         if(!this.gameOver){
             this.gameOver=true;
-            //this.userCount.drawVisitCount();
+            this.userCount.addScore(this.score);
             if(this.obstacles.length <= 0){
                 this.sound.play(this.sound.victory);
                 this.message1 = `Nailed it champ!!! 🏆`;
