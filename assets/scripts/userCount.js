@@ -82,10 +82,10 @@ class UserTracker {
         ctx.fillStyle = 'black';
         ctx.font = '24px Arial';
         // Display user's name and other statistics
-        ctx.fillText('Player: ' + this.userName, 300, 300);
-        ctx.fillText('Total Visits: ' + this.totalVisitCount, 300, 320);
-        ctx.fillText('Unique Users: ' + this.uniqueUserCount, 300, 340);
-        ctx.fillText(`Latest Score: ${this.scores.length > 0 ? this.scores[this.scores.length - 1] : 'N/A'}`, 300, 360); // Check if there are scores
+        ctx.fillText('Player: ' + this.userName, 500, 270);
+        ctx.fillText('Total Visits: ' + this.totalVisitCount,500, 290);
+        ctx.fillText('Unique Users: ' + this.uniqueUserCount, 500, 310);
+        ctx.fillText(`Latest Score: ${this.scores.length > 0 ? this.scores[this.scores.length - 1] : 'N/A'}`, 500, 330); // Check if there are scores
         ctx.restore();
     }
 
